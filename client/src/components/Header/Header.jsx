@@ -24,7 +24,6 @@ const [showSearch, setShowSearch] = useState()
     console.log(offset);
   };
   useEffect(() => {
-    console.log("useEffect");
     window.addEventListener("scroll", handleScroll);
   }, []);
   return (
