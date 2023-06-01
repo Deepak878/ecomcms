@@ -2,7 +2,12 @@ import "./Cart.scss";
 import { MdClose } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 import CartItem from "../Cart/CartItem/CartItem";
+import { useContext } from "react";
+import { Context } from "../../utils/context";
+import './Cart.scss'
+
 const Cart = ({ setShowCart }) => {
+  const {cartItems, cartSubTotal} = useContext(Context)
   return (
     <div className="cart-panel">
       <div className="opac-layer"></div>
@@ -14,23 +19,23 @@ const Cart = ({ setShowCart }) => {
             <span className="text">Close</span>
           </span>
         </div>
-        {/* <div className="empty-cart">
+        {!cartItems.length && <div className="empty-cart">
           <BsCartX />
           <span>No products in the cart.</span>
           <button className="return-cta">RETURN TO SHOP</button>
-        </div> */}
-        <>
+        </div>}
+        {!!cartItems?.length && <>
           <CartItem />
           <div className="cart-footer">
             <div className="subtotal">
               <span className="text">Subtotal:</span>
-              <span className="text total">&#2352;1234</span>
+              <span className="text total">&#2352;{cartSubTotal}</span>
             </div>
             <div className="button">
               <button className="checkout-cta">Checkout</button>
             </div>
           </div>
-        </>
+        </>}
       </div>
     </div>
   );
